@@ -8,7 +8,10 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>二手好房</title>
+    <title>基于Web的房屋租赁管理系统</title>
+    <!-- Icon -->
+    <link rel="icon" href="/static/img/favicon.ico" type="image/x-icon"/>
+    <link rel="shortcut icon" href="/static/img/favicon.ico" type="image/x-icon"/>
 
     <!-- Bootstrap core CSS -->
     <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -180,7 +183,7 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
-        <a class="navbar-brand" href="/">二手好房</a>
+        <a class="navbar-brand" href="/">心仪好房</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
                 data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -225,8 +228,8 @@
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
                 <div class="site-heading">
-                    <h1>二手好房</h1>
-                    <span class="subheading">给您推荐优质房源</span>
+                    <h1>好房不等人</h1>
+                    <span class="subheading">立刻搜索心仪好房</span>
                 </div>
             </div>
         </div>
@@ -248,7 +251,7 @@
         </div>
         <!-- 模块1信息展示 -->
         <div class="collection col-lg-12 col-md-12">
-            <div id="fill-data" class="{{ page_num }}">
+            <div id="fill-data" class="{{page_num}}">
 
                 {% for house in house_list %}
                 <div class="row collection-line">
@@ -417,7 +420,7 @@
             <div class="col-lg-8 col-md-10 mx-auto">
 
 
-                <p class="copyright text-muted">Copyright &copy; 二手好房 2019</p>
+                <p class="copyright text-muted">Copyright &copy; 基于Web的房屋租赁管理系统 2022</p>
             </div>
         </div>
     </div>
