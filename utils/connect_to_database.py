@@ -49,11 +49,12 @@ def query_data(sql_str):
 
 if __name__ == '__main__':
     # sql = 'select count(*) from soufang if name='xiaodong'
-    sql='show databases'
-    result = query_data(sql)
+    id=str(105133)
+    sql_list = ['show databases;', 'use beijing_house_data;','update soufang set liulanliang=liulanliang+1 where id=105133']
+    for sql in sql_list:
+        result = query_data(sql)
+        print(result)
 
-
-    print(result)
     # beijing_region = ['东城','西城','海淀','昌平','朝阳','顺义','通州','石景山']
     #
     # import random

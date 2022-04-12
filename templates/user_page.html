@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>基于Web的房屋租赁管理系统</title>
+    <!-- Icon -->
+    <link rel="icon" href="/static/img/favicon.ico" type="image/x-icon"/>
+    <link rel="shortcut icon" href="/static/img/favicon.ico" type="image/x-icon"/>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="/static/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/static/css/clean-blog.min.css" rel="stylesheet">
+
+
+    <style>
+
+        <!--
+        -->
+        #mainNav {
+            border-bottom: 1px solid #ecf0f1;
+            background: transparent;
+        }
+
+        #mainNav .navbar-brand {
+            padding: 10px 20px;
+            color: #343a40;
+        }
+
+        #mainNav .navbar-brand:focus, #mainNav .navbar-brand:hover {
+            color: #0085A1;
+        }
+
+        #mainNav .navbar-nav > li.nav-item > a {
+            padding: 10px 20px;
+            color: #343a40;
+        }
+
+        #mainNav .navbar-nav > li.nav-item > a:focus, #mainNav .navbar-nav > li.nav-item > a:hover {
+            color: #0085A1;
+
+        }
+
+        header.masthead {
+            margin-bottom: 50px;
+            background: no-repeat center center;
+            background-color: #fff;
+            background-attachment: scroll;
+            position: relative;
+            background-size: cover;
+        }
+
+        header.masthead .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background-color: #fff;
+            opacity: 0.5;
+        }
+
+        /**/
+        .no-margin-bottom {
+            margin-bottom: 0 !important;
+        }
+
+        .detail-body {
+            background: #fff;
+            margin-top: 100px;
+            margin-bottom: 50px;
+
+        }
+
+        .user-info {
+            font-size: 16px;
+            color: #394043;
+            font-weight: 300;
+            line-height: 25px;
+            text-align: justify;
+            border-bottom: #ecf0f1 1px solid;
+            padding: 10px;
+            margin: 20px 20px 10px 5px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .c-1 {
+            padding: 1px 10px 2px 20px;
+            margin: 0 0 12px 0;
+            background-color: #ecf0f1;
+        }
+
+        .c-1 span {
+            line-height: 30px;
+        }
+
+        /* editor button */
+        .c-2 {
+            margin: 0 0 12px 0;
+            border-radius: 1px;
+            font-size: 13px;
+        }
+
+        input {
+            font-size: 12px;
+            padding-left: 8px;
+            height: 28px;
+            width: 350px;
+        }
+
+        .course {
+            margin-top: 10px;
+            padding: 7px 5px 0 5px;
+            background: #fff;
+        }
+
+        .course-info {
+            height: 30px;
+            font-weight: 500;
+            color: #333;
+            font-size: 16px;
+        }
+
+        .course-info1 {
+            height: 20px;
+            font-weight: 300;
+            font-size: 12px;
+        }
+
+        .course-info span {
+            line-height: 37px;
+        }
+
+        .price {
+            color: #e74c3c;
+            font-size: 14px;
+        }
+
+        /* change-chanle */
+        .nav-tabs > li > a {
+            position: relative;
+            display: block;
+            padding: 10px 15px;
+            font-size: 14px;
+            margin-right: 2px;
+            line-height: 1.42857143;
+            border-radius: 4px 4px 0 0;
+            text-decoration: none;
+            border-top: 1px solid #ddd;
+            border-left: 1px solid #ddd;
+            border-right: 1px solid #ddd;
+        }
+
+        .nav-tabs > li > a:focus, .nav-tabs > li > a:hover {
+            color: #555;
+            cursor: default;
+            background-color: #eee;
+            text-decoration: none
+        }
+
+        /* chanle */
+        .collection {
+            display: none;
+            overflow: scroll;
+            height: 650px;
+        }
+
+        .collection-line {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            margin: 20px 20px 20px 5px;
+            background: #fff;
+            border-bottom: #ecf0f1 1px solid;
+        }
+
+        .collection-line-info {
+            font-size: 14px;
+
+        }
+
+        .collection-line-info div {
+            height: 31px;
+
+        }
+
+        .collection-line-info .attribute-text {
+            font-weight: 400;
+            color: #57606f;
+            letter-spacing: 0.2px;
+        }
+
+        .collection-line-info .info-text {
+            font-weight: 400;
+            color: #333;
+            letter-spacing: 0.2px;
+        }
+
+        /* more */
+        .info-more {
+            text-align: center;
+        }
+
+        .info-more a {
+            font-weight: 400;
+            color: #3498db;
+            font-size: 14px;
+            text-decoration: none;
+        }
+
+        .info-more i {
+            padding: 65px 30px 65px 50px;
+            position: relative;
+        }
+
+        .info-more i:hover, .info-more i:focus {
+            color: #e74c3c;
+            opacity: 0;
+            animation: fadeIn 0.5s infinite linear alternate-reverse;
+        }
+
+        @keyframes fadeIn {
+
+        .collection-line {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+
+        }
+
+        /* browse-record */
+        .browse-record {
+            padding-bottom: 15px;
+            /*box-shadow: -5px 0 10px -2px rgba(236, 236, 236, 0.86);*/
+        }
+
+        .browse-record-first-div {
+            padding-bottom: 10px;
+
+        }
+
+        #user {
+            position: relative;
+        }
+
+        #user input {
+            width: 65px;
+            height: 30px;
+            position: absolute;
+            top: 23px;
+            left: 21px;
+            display: none;
+            outline: none;
+        }
+
+        #user input:hover {
+            cursor: pointer;
+        }
+
+        #collect {
+            position: relative;
+        }
+
+        #collect .collect_off {
+            position: absolute;
+            top: 5px;
+            right: 25px;
+            font-size: 12px;
+            font-weight: 200;
+        }
+
+        #collect .collect_off:hover {
+            cursor: pointer;
+            color: red;
+        }
+
+        .del-btn {
+            text-align: right;
+            font-size: 13px;
+            font-weight: 300;
+        }
+
+        #del {
+            margin-right: 10px;
+        }
+
+        #del:hover {
+            cursor: pointer;
+            color: red;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+        <a class="navbar-brand" href="/">心仪好房</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+                aria-label="Toggle navigation">
+            Menu
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <div class="collapse navbar-collapse " id="navbarResponsive">
+
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">首页</a>
+                </li>
+
+
+                <li class="nav-item" id="user">
+                    {% if request.cookies.get('name') %}
+                    <!--处于登录状态-->
+                    <!--用户名、退出登录-->
+                    <a id='u_name' class="nav-link" href="/user/{{ request.cookies.get('name') }}">{{
+                        request.cookies.get('name') }}</a>
+                    {% else %}
+                    <!--没有处于登录装填下，才显示登录按钮-->
+                    <a class="nav-link" data-toggle="modal" data-target="#login" href="">登陆</a>
+                    {% endif %}
+                </li>
+
+                {% if request.cookies.get('name') %}
+                <li class="nav-item">
+                    <a class="nav-link" id="logout" href="">退出登录</a>
+                </li>
+                {% endif %}
+
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Page Header -->
+<header class="masthead no-margin-bottom" style="background-color: #fff; min-height: 500px">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row ">
+            <div class="col-lg-8 col-md-8 mx-auto detail-body">
+                <ul class="nav nav-tabs" style="margin:10px 0 30px">
+                    <li class="active chanle1"><a href="#userinfo">账号信息</a></li>
+                    <li class="chanle2"><a href="#collections">房源收藏</a></li>
+                </ul>
+                <div class="user-info">
+                    <input value="{{ user.name }}" id="n-data" style="display: none">
+                    <div class="row">
+                        <div class="col-lg-8 c-1">
+                            <span>昵称：</span>
+                            <span class="nkname">{{ user.name }}</span>
+                        </div>
+                        <div class="col-lg-4">
+                            <button class="btn-info c-2" id="btn-name"><i class="fa fa-pencil-square-o"
+                                                                          aria-hidden="true"> 编辑</i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <input value="{{ user.addr }}" id="a-data" style="display: none">
+                    <div class="row">
+                        <div class="col-lg-8 c-1">
+                            <span>住址：</span>
+                            <span class="nkaddr">{{ user.addr }}</span>
+                        </div>
+                        <div class="col-lg-4">
+                            <button class="btn-info c-2" id="btn-addr"><i class="fa fa-pencil-square-o"
+                                                                          aria-hidden="true"> 编辑</i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <input value="{{ user.password }}" id="p-data" style="display: none">
+                    <div class="row">
+                        <div class="col-lg-8 c-1">
+                            <span>密码：</span>
+                            <span class="nkpd">{{ user.password }}</span>
+                        </div>
+                        <div class="col-lg-4">
+                            <button class="btn-info c-2" id="btn-pd"><i class="fa fa-pencil-square-o"
+                                                                        aria-hidden="true"> 编辑</i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <input value="{{ user.email }}" id="e-data" style="display: none">
+                    <div class="row">
+                        <div class="col-lg-8 c-1">
+                            <span>邮箱：</span>
+                            <span class="nkemail">{{ user.email }}</span>
+                        </div>
+                        <div class="col-lg-4">
+                            <button class="btn-info c-2" id="btn-email"><i class="fa fa-pencil-square-o"
+                                                                           aria-hidden="true"> 编辑</i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!--收藏-->
+                <div class="collection">
+
+                    {% for house in collect_house_list%}
+                    <div class="row collection-line" id="collect">
+                        <span class="collect_off" id="{{ house.id }}">取消收藏</span>
+                        <div class="col-lg-4 col-md-4 mx-auto">
+                            <div>
+                                <a href="/house/{{ house.id }}">
+                                    <img class='img-fluid img-box' src="/static/img/house-bg1.jpg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 mx-auto">
+                            <div class="collection-line-info">
+                                <div>
+                                    <span class="attribute-text">房源地址：</span>
+                                    &nbsp
+                                    <span class="info-text">{{ house.address }}</span>
+                                </div>
+                                <div>
+                                    <span class="attribute-text">建筑面积：</span>
+                                    &nbsp
+                                    <span class="info-text">{{ house.area }}平米</span>
+                                </div>
+                                <div>
+                                    <span class="attribute-text">房源户型：</span>
+                                    &nbsp
+                                    <span class="info-text">{{ house.rooms }}</span>
+                                </div>
+                                <div>
+                                    <span class="attribute-text">房源朝向：</span>
+                                    &nbsp
+                                    <span class="info-text">{{ house.direction }}</span>
+                                </div>
+                                <div>
+                                    <span class="attribute-text">房源价格：</span>
+                                    &nbsp
+                                    <span class="info-text" style="color: #e74c3c">￥&nbsp{{ house.price }}</span>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-2 mx-auto" style="height: 100px; margin-top: 40px;">
+                            <div class="info-more"
+                                 style="width: 100%; height: 100%; position: relative; overflow: hidden;">
+                                <span><a href="/house/{{ house.id }}"
+                                         style="position: absolute; top:-30px; left: -1px; height: 20px;"><i
+                                        class="fa fa-arrow-right"
+                                        aria-hidden="true"></i></a></span>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+
+
+            <!--浏览记录-->
+            <div class="col-lg-4 col-md-4 mx-auto detail-body">
+                <div class="row browse-record">
+                    <div class="col-lg-10 col-md-10 mx-auto">
+                        <h3 style="margin:20px 0 15px">浏览记录</h3>
+
+                    </div>
+                    <div class="col-lg-10 col-md-10 mx-auto del-btn">
+                        <span id="del">清空浏览记录</span>
+                    </div>
+                    <div style="overflow: scroll; height:680px;">
+
+
+                        {% for house in seen_house_list %}
+                        <div class="col-lg-10 col-md-10 mx-auto browse-record-first-div">
+                            <div class="course">
+                                <div><a href="/house/{{ house.id }}"><img class='img-fluid img-box'
+                                                                          src="/static/img/house-bg1.jpg" alt=""></a>
+                                </div>
+                                <div class="course-info">
+                                    <span class="glyphicon glyphicon-map-marker"></span>
+                                    <span>{{ house.address }}</span>
+                                </div>
+                                <div class="course-info1">
+                                    <span>{{ house.rooms }}-{{ house.area }}平米</span>
+                                    <span class="price">￥&nbsp{{ house.price }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</header>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <p class="copyright text-muted">Copyright &copy; 基于Web的房屋租赁管理系统 2022</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Bootstrap core JavaScript -->
+
+<script src="/static/vendor/jquery/jquery.min.js"></script>
+<script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Custom scripts for this template -->
+<script src="/static/js/clean-blog.min.js"></script>
+<script src="/static/vendor/jquery/jquery.cookie.js"></script>
+
+<!-- change chanle -->
+<script>
+
+    // 删除浏览记录
+    $("#del").on('click', function () {
+        var $user_name = $.cookie('name');
+        var $span = $(this);
+        if ($user_name) {
+            $.ajax({
+                url: "/del_record",
+                type: 'post',
+                data: {
+                    user_name: $user_name
+                },
+                success: function (resp) {
+                    if (resp["valid"] == '1') {
+                        $span.parent().next().remove();
+                        alert(resp["msg"])
+                    } else {
+                        alert(resp["msg"])
+                    }
+                }
+            })
+        } else {
+            alert('您还没有登录!');
+        }
+    });
+
+    //  取消收藏
+    $(".collect_off").on('click', function () {
+
+        var hid = this.id;
+        var name = $.cookie('name');
+        var $span = $(this);
+        if (name) {
+            $.ajax({
+                url: "/collect_off",
+                type: 'post',
+                data: {
+                    house_id: hid,
+                    user_name: name,
+                },
+                dataType: 'json',
+                success: function (resp) {
+                    if (resp["valid"] == '1') {
+                        alert(resp["msg"]);
+                        $span.parent().remove();
+                    } else {
+                        alert(resp["msg"]);
+                    }
+                }
+            })
+        } else {
+            alert('您还没有登录!')
+        }
+    });
+
+
+    // 登出功能
+    $("#logout").on('click', function () {
+        $.ajax({
+            url: '/logout',
+            type: 'get',
+            dataType: 'json',
+            success: function (res) {
+                if (res["valid"] == '1') {
+                    alert(res["msg"]);
+                    window.location.href = '/';
+                } else {
+                    alert(res["msg"]);
+                }
+            }
+        })
+    });
+
+    $(".chanle1").on('click', function () {
+        $('.user-info').show();
+        $('.collection').hide();
+        if ($('.chanle1').hasClass('action')) {
+            $(".chanle1").removeClass('action');
+        }
+        $(".chanle1").addClass('action');
+        $(".chanle2").removeClass('action');
+    });
+    $(".chanle2").on('click', function () {
+        $('.user-info').hide();
+        $('.collection').show();
+        $(".chanle1").removeClass('action');
+        $(".chanle2").addClass('action')
+    });
+
+    // 修改用户名称的
+
+    // 标志位
+    var name_option = 1;
+    // 获取原来的名字
+    var y_name = $('#n-data').val();
+    $("#btn-name").on('click', function () {
+        if (name_option == 1) {
+
+            $('.nkname').html('<input id="nkname" type="text" required placeholder="6-15位字母或数字">');
+            $('#nkname').focus();
+            $("#btn-name i").text(' 提交');
+            name_option = 0
+        } else {
+            var j_data = {};
+            var v_nkname = $('#nkname').val();
+            if (5 < v_nkname.length < 16) {
+                if (/[\u4e00-\u9fa5|a-zA-Z0-9]+$/.test(v_nkname)) {
+                    j_data['name'] = v_nkname;
+                    j_data['y_name'] = y_name
+
+                } else {
+                    alert('用户名需要6-15位字母或数字');
+                    $('.nkname').html('<input id="nkname" type="text" required placeholder="6-15位字母或数字">');
+                    $('#nkname').focus();
+                    return
+                }
+            }
+
+            $.ajax({
+                url: "http://127.0.0.1:5000/modify/userinfo/name",
+                type: 'post',
+                dataType: 'json',
+                data: j_data,
+                success: function (data) {
+                    if (data['ok'] == '1') {
+                        alert('修改成功');
+                        name_option = 1;
+                        $('.nkname').html(v_nkname);
+                        $("#btn-name i").text(' 编辑');
+                        $('#n-data').attr('value', v_nkname);
+                        window.location.href = '/user/' + v_nkname
+                    } else {
+                        alert('修改失败，请重试~');
+                        $('#nkname').html(y_name);
+                        $("#btn-name i").text(' 编辑');
+                    }
+                },
+                error: function () {
+                    alert('修改失败，请重试~');
+                    $('#nkname').html(y_name);
+                    $("#btn-name i").text(' 编辑');
+                }
+
+            });
+        }
+
+    });
+
+    var addr_option = 1;
+    var y_name = $('#n-data').val();
+    var y_addr = $('#a-data').val();
+    $("#btn-addr").on('click', function () {
+        if (addr_option == 1) {
+
+            $('.nkaddr').html('<input id="nkaddr" type="text" required placeholder="6-15位中文、字母或数字">');
+            $('#nkaddr').focus();
+            $("#btn-addr i").text(' 提交');
+            addr_option = 0
+        } else {
+            var j_data = {};
+            var v_nkaddr = $('#nkaddr').val();
+            if (5 < v_nkaddr.length < 16) {
+                if (/[\u4e00-\u9fa5|a-zA-Z0-9]+$/.test(v_nkaddr)) {
+                    j_data['addr'] = v_nkaddr;
+                    j_data['y_name'] = y_name
+
+                } else {
+                    alert('用户名需要6-15位字母或数字');
+                    $('.nkaddr').html('<input id="nkaddr" type="text" required placeholder="6-15位中文、字母或数字">');
+                    $('#nkaddr').focus();
+                    return
+                }
+            }
+
+            $.ajax({
+                url: "http://127.0.0.1:5000/modify/userinfo/addr",
+                type: 'post',
+                dataType: 'json',
+                data: j_data,
+                success: function (data) {
+                    if (data['ok'] == '1') {
+                        alert('修改成功');
+                        addr_option = 1;
+                        $('.nkaddr').html(v_nkaddr);
+                        $("#btn-addr i").text(' 编辑');
+                        $('#a-data').attr('value', v_nkaddr)
+                    } else {
+                        alert('修改失败，请重试~');
+                        $('#nkaddr').html(y_addr);
+                        $("#btn-addr i").text(' 编辑');
+                    }
+                },
+                error: function () {
+                    alert('修改失败，请重试~');
+                    $('#nkpd').html(y_addr);
+                    $("#btn-pd i").text(' 编辑');
+                }
+
+            });
+        }
+
+    });
+
+    var pd_option = 1;
+    var y_name = $('#n-data').val();
+    var y_pd = $('#p-data').val();
+    $("#btn-pd").on('click', function () {
+        if (pd_option == 1) {
+            $('.nkpd').html('<input id="nkpd" type="text" required placeholder="6-15位字母或数字">');
+            $('#nkpd').focus();
+            $("#btn-pd i").text(' 提交');
+            pd_option = 0
+        } else {
+            var j_data = {};
+            var v_nkpd = $('#nkpd').val();
+            if (5 < v_nkpd.length < 16) {
+                if (/[a-zA-Z0-9]+$/.test(v_nkpd)) {
+                    j_data['pd'] = v_nkpd;
+                    j_data['y_name'] = y_name
+
+                } else {
+                    alert('用户名需要6-15位字母或数字');
+                    $('.nkpd').html('<input id="nkpd" type="text" required placeholder="6-15位字母或数字">');
+                    $('#nkpd').focus();
+                    return
+                }
+            }
+
+
+            $.ajax({
+                url: "http://127.0.0.1:5000/modify/userinfo/pd",
+                type: 'post',
+                dataType: 'json',
+                data: j_data,
+                success: function (data) {
+                    if (data['ok']) {
+                        alert('修改成功');
+                        pd_option = 1;
+                        $('.nkpd').html(v_nkpd);
+                        $("#btn-pd i").text(' 编辑');
+                        $('#p-data').attr('value', v_nkpd)
+                    } else {
+                        alert('修改失败，请重试~');
+                        $('#nkpd').html(y_pd);
+                        $("#btn-pd i").text(' 编辑');
+                    }
+                },
+                error: function () {
+                    alert('修改失败，请重试~');
+                    $('#nkpd').html(y_pd);
+                    $("#btn-pd i").text(' 编辑');
+                }
+
+            });
+        }
+
+    })
+
+    var email_option = 1;
+    var y_name = $('#n-data').val();
+    var y_email = $('#e-data').val();
+    $("#btn-email").on('click', function () {
+        if (email_option == 1) {
+            $('.nkemail').html('<input id="nkemail" type="text" required placeholder="邮箱格式错误！">');
+            $('#nkemail').focus();
+            $("#btn-email i").text(' 提交');
+            email_option = 0
+        } else {
+            var j_data = {};
+            var v_nkemail = $('#nkemail').val();
+            if (5 < v_nkemail.length < 16) {
+                if (v_nkemail.match(/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/)) {
+                    j_data['email'] = v_nkemail;
+                    j_data['y_name'] = y_name
+
+                } else {
+                    alert('邮箱格式错误！');
+                    $('.nkemail').html('<input id="nkemail" type="text" required placeholder="邮箱格式错误！">');
+                    $('#nkemail').focus();
+                    return
+                }
+            }
+
+            $.ajax({
+                url: "http://127.0.0.1:5000/modify/userinfo/email",
+                type: 'post',
+                dataType: 'json',
+                data: j_data,
+                success: function (data) {
+                    if (data['ok']) {
+                        alert('修改成功');
+                        email_option = 1;
+                        $('.nkemail').html(v_nkemail);
+                        $("#btn-email i").text(' 编辑');
+                        $('#e-data').attr('value', v_nkemail);
+                    } else {
+                        alert('修改失败，请重试~');
+                        $('#nkemail').html(y_email);
+                        $("#btn-email i").text(' 编辑');
+                    }
+                },
+                error: function () {
+                    alert('修改失败，请重试~');
+                    $('#nkemail').html(y_email);
+                    $("#btn-email i").text(' 编辑');
+                }
+
+            });
+        }
+
+    })
+</script>
+
+</body>
+
+</html>

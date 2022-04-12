@@ -1,9 +1,5 @@
-# 前端监听关键字
-# 封装成查询信息传入后端
-# 查询数据库
-# 回传查询信息
-# 渲染搜索列表
-# 点击检索项目
+#最新房源和最热房源的展示通过@list_page.route('/list/pattern/<int:page>')实现，list_page
+#搜索结果展示@list_page.route('/query') 实现，sousuo_page
 from flask import Blueprint, request, render_template
 from models import House
 
