@@ -48,34 +48,15 @@ def query_data(sql_str):
 
 
 if __name__ == '__main__':
-    # sql = 'select count(*) from soufang if name='xiaodong'
-    id=str(105133)
-    #sql_list = ['show databases;', 'use beijing_house_data;','update soufang set liulanliang=liulanliang+1 where id=105133']
-
-    sql_house_info=['use beijing_house_data','show columns from house_info']
-    for sql in sql_house_info:
-        result=query_data(sql)
-    house_info=[]
-    for i in result:
-        house_info.append([i[0]])
 
 
-    sql_list=['use beijing_house_data','show columns from house_info','select * from house_info where liulanliang>=5683']
 
+    #sql_list=['use beijing_house_data','show columns from house_info','alter table house_info drop column liangdian;','show columns from house_info']
+
+    sql_list=['use beijing_house_data','show columns from recommendation']
 
     for sql in sql_list:
         result = query_data(sql)
+    for i in result:
+        print(i[0])
 
-    for i in range(len(result[0])):
-        house_info[i].append(result[0][i])
-    for i in house_info:
-        print(i)
-
-    # beijing_region = ['东城','西城','海淀','昌平','朝阳','顺义','通州','石景山']
-    #
-    # import random
-    # for i in range(1, 305):
-    #     addr = random.choice(beijing_region)
-    #     sql = 'update userinfo set addr="{}" where id = {}'.format(addr, str(i))
-    #     # sql = 'update userinfo set addr="东城" where id = 1'
-    #     query_data(sql)
