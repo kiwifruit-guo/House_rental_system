@@ -20,7 +20,7 @@ def index():
 
     # 获取最热房源top4的功能
     # House.query.order_by('liulanliang')
-    house_hot_list = House.query.order_by(House.liulanliang.desc()).limit(4).all()
+    house_hot_list = House.query.order_by(House.page_view.desc()).limit(4).all()
     # print(house_hot_list)
 
     return render_template('index.html', num=house_total_num,

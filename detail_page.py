@@ -30,12 +30,12 @@ detail_page = Blueprint('detail_page', __name__)
 @detail_page.route('/house/<int:hid>')
 def detail(hid):
     house = House.query.get(hid)
-    liulangliang = house.liulanliang
+    page_view = house.page_view
     id = str(house.id)
     # sql_list = ['use beijing_house_data;', f'update soufang set liulanliang=liulanliang+1 where id={id}']
     # for sql in sql_list:
     #     result = query_data(sql)
-    house.liulanliang+=1
+    house.page_view+=1
     db.session.commit()
     sheshi_str = house.sheshi  # 床-宽带-洗衣机-空调-热水器-暖气
     sheshi_list = sheshi_str.split('-')

@@ -22,7 +22,7 @@ class House(db.Model):
     #liangdian = db.Column(db.TEXT)
     #peitao = db.Column(db.TEXT)
     #chuxing = db.Column(db.TEXT)
-    liulanliang = db.Column(db.Integer)
+    page_view = db.Column(db.Integer)
     #people_name = db.Column(db.String(100))
     phone_num = db.Column(db.String(100))
     #house_num = db.Column(db.String(100))

@@ -65,7 +65,7 @@ def return_new_list(page):
 def return_hot_list(page):
     if page > 10 or page <= 0:
         page=1
-    result = House.query.order_by(House.liulanliang.desc()).paginate(page, per_page=10)
+    result = House.query.order_by(House.page_view.desc()).paginate(page, per_page=10)
     #return (result)
     return render_template('list.html', house_list=result.items, page_num=result.page)
 
