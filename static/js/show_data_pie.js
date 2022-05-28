@@ -17,7 +17,7 @@ function pie_chart(data) {
 
             type: 'pie',
 
-            radius: ['0%', '50%'],
+            radius: ['10%', '50%'],
             center: ['50%', '50%'],
 
             labelLine: {

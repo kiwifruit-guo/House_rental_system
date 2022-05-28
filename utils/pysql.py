@@ -53,7 +53,7 @@ if __name__ == '__main__':
 
     #sql_list=['use beijing_house_data','show columns from house_info','alter table house_info drop column liangdian;','show columns from house_info']
 
-    sql_list=['use beijing_house_data','show columns from recommendation']
+    sql_list=['use beijing_house_data','show tables']
 
     for sql in sql_list:
         result = query_data(sql)

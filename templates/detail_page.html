@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh">
-<!--detail_page-->
+
 <head>
 
     <meta charset="utf-8">
@@ -9,7 +9,6 @@
     <meta name="author" content="">
 
     <title>基于Web的房屋租赁管理系统</title>
-    <!-- Icon -->
     <link rel="icon" href="/static/img/favicon.ico" type="image/x-icon"/>
     <link rel="shortcut icon" href="/static/img/favicon.ico" type="image/x-icon"/>
 
@@ -329,509 +328,504 @@
 <body>
 
 <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+        <a class="navbar-brand" href="/">二手好房</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+                aria-label="Toggle navigation">
+            Menu
+            <i class="fas fa-bars"></i>
+        </button>
 
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-        <div class="container">
-            <a class="navbar-brand" href="/">心仪好房</a>
-            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-                    data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                Menu
-                <i class="fas fa-bars"></i>
-            </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
 
-            <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">首页</a>
+                </li>
 
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/">首页</a>
-                    </li>
-
-                    <li class="nav-item" id="user">
-                        {% if request.cookies.get('name') %}
-                        <!--处于登录状态-->
-                        <!--用户名、退出登录-->
-                        <a id='u_name' class="nav-link" href="/user/{{ request.cookies.get('name') }}">{{
-                            request.cookies.get('name') }}</a>
-                        {% else %}
-                        <!--没有处于登录装填下，才显示登录按钮-->
-                        <a class="nav-link" data-toggle="modal" data-target="#login" href="">登陆</a>
-                        {% endif %}
-                    </li>
-
+                <li class="nav-item" id="user">
                     {% if request.cookies.get('name') %}
-                    <li class="nav-item">
-                        <a class="nav-link" id="logout" href="">退出登录</a>
-                    </li>
+                    <!--处于登录状态-->
+                    <!--用户名、退出登录-->
+                    <a id='u_name' class="nav-link" href="/user/{{ request.cookies.get('name') }}">{{
+                        request.cookies.get('name') }}</a>
+                    {% else %}
+                    <!--没有处于登录装填下，才显示登录按钮-->
+                    <a class="nav-link" data-toggle="modal" data-target="#login" href="">登陆</a>
                     {% endif %}
-                </ul>
-            </div>
+                </li>
+
+                {% if request.cookies.get('name') %}
+                <li class="nav-item">
+                    <a class="nav-link" id="logout" href="">退出登录</a>
+                </li>
+                {% endif %}
+            </ul>
         </div>
-    </nav>
+    </div>
+</nav>
 
-    <!-- Page Header -->
-    <header class="masthead no-margin-bottom" style="background-color: #fff">
-        <div class="overlay"></div>
-        <div class="container">
+<!-- Page Header -->
+<header class="masthead no-margin-bottom" style="background-color: #fff">
+    <div class="overlay"></div>
+    <div class="container">
 
 
-            <!--内容-->
-            <div class="row">
-                <div class="col-lg-12 col-md-12 mx-auto detail-body">
-                    <div class="row info-line">
-                        <!--大标题-->
-                        <div class="col-lg-12 col-md-12 detail-header">
-                            <h3>{{ house.address }}&nbsp{{ house.rooms }}</h3>
-                            <div class="describe">
-                                <span>为您精准定位，当前城市房源信息</span>
-                            </div>
+        <!--内容-->
+        <div class="row">
+            <div class="col-lg-12 col-md-12 mx-auto detail-body">
+                <div class="row info-line">
+                    <!--大标题-->
+                    <div class="col-lg-12 col-md-12 detail-header">
+                        <h3>{{ house.address }}&nbsp{{ house.rooms }}</h3>
+                        <div class="describe">
+                            <span>为您精准定位，当前城市房源信息</span>
                         </div>
-                        <!--左详情-->
-                        <div class="col-lg-8 col-md-8">
-                            <div class="course">
+                    </div>
+                    <!--左详情-->
+                    <div class="col-lg-8 col-md-8">
+                        <div class="course">
 
-                                <!--图-->
-                                <div><a href="#"><img class='img-fluid img-box' src="/static/img/house-bg1.jpg" alt=""></a>
-                                </div>
-                                <!--价格-->
-                                <div class="house-info">
-                                    <span class="price">￥&nbsp{{ house.price }}/月</span>
-                                    <span class="collection" id="btn-collection"><a><i class="fa fa-heart"
-                                                                                       aria-hidden="true"> 收藏</i></a></span>
-                                </div>
+                            <!--图-->
+                            <div><a href="#"><img class='img-fluid img-box' src="/static/img/house-bg1.jpg" alt=""></a>
+                            </div>
+                            <!--价格-->
+                            <div class="house-info">
+                                <span class="price">￥&nbsp{{ house.price }}/月</span>
+                                <span class="collection" id="btn-collection"><a><i class="fa fa-heart"
+                                                                                   aria-hidden="true"> 收藏</i></a></span>
+                            </div>
 
-                                <!--基本信息标题-->
-                                <div class="attribute-header">
-                                    <h4>基本信息</h4>
+                            <!--基本信息标题-->
+                            <div class="attribute-header">
+                                <h4>基本信息</h4>
+                            </div>
+                            <!--属性1-->
+                            <div class="row attribute-info">
+                                <div class="col-lg-2 col-md-2">
+                                    <span class="attribute-text">基本属性</span>
                                 </div>
-                                <!--属性1-->
-                                <div class="row attribute-info">
-                                    <div class="col-lg-2 col-md-2">
-                                        <span class="attribute-text">基本属性</span>
+                                <div class="col-lg-4 col-md-4">
+                                    <div>
+                                        <span class="attribute-text">房屋户型：</span>
+                                        <span class="info-text">{{ house.rooms }}</span>
                                     </div>
-                                    <div class="col-lg-4 col-md-4">
-                                        <div>
-                                            <span class="attribute-text">房屋户型：</span>
-                                            <span class="info-text">{{ house.rooms }}</span>
-                                        </div>
-                                        <div>
-                                            <span class="attribute-text">建筑面积：</span>
-                                            <span class="info-text">{{ house.area }}平米</span>
-                                        </div>
-                                        <div>
-                                            <span class="attribute-text">房屋朝向：</span>
-                                            <span class="info-text">{{ house.direction }}</span>
-                                        </div>
+                                    <div>
+                                        <span class="attribute-text">建筑面积：</span>
+                                        <span class="info-text">{{ house.area }}平米</span>
                                     </div>
-                                    <div class="col-lg-6 col-md-6">
-                                        <div>
-                                            <span class="attribute-text">所在区域：</span>
-                                            <span class="info-text">{{ house.address }}</span>
-                                        </div>
-                                        <div>
-                                            <span class="attribute-text">租住类型：</span>
-                                            <span class="info-text">{{ house.rent_type }}</span>
-                                        </div>
-                                        <div>
-                                            <span class="attribute-text">房东电话：</span>
-                                            <span class="info-text">{{ house.phone_num }}</span>
-                                        </div>
+                                    <div>
+                                        <span class="attribute-text">房屋朝向：</span>
+                                        <span class="info-text">{{ house.direction }}</span>
                                     </div>
                                 </div>
-                                <!--属性2-->
-                                <div class="row attribute-info">
-                                    <div class="col-lg-2 col-md-2">
-                                        <span class="attribute-text">房屋卖点</span>
+                                <div class="col-lg-6 col-md-6">
+                                    <div>
+                                        <span class="attribute-text">所在区域：</span>
+                                        <span class="info-text">{{ house.address }}</span>
                                     </div>
-                                    <div class="col-lg-8 col-md-8">
-                                        <div>
-                                            <span class="attribute-text">交通条件：</span>
-                                            <span class="info-text">{{ house.traffic | dealNone }}</span>
-                                        </div>
-                                        <div>
-                                            <span class="attribute-text">优势条件：</span>
-                                            <span class="info-text">{{ house.title }}</span>
-                                        </div>
+                                    <div>
+                                        <span class="attribute-text">租住类型：</span>
+                                        <span class="info-text">{{ house.rent_type }}</span>
                                     </div>
-
-                                </div>
-
-                                <!--房源配套设施-->
-                                <div class="attribute-header">
-                                    <h4>房源配套设施</h4>
-                                </div>
-                                <!--设施列表-->
-                                <div class="row attribute-info">
-                                    <div class="col-lg-2 col-md-2">
-                                        <span class="icon-1"></span>
-
-                                        {% if '冰箱' in sheshi %}
-                                        <span class="attribute-text-sm" style="color: #f1c40f">冰箱</span>
-                                        {% else %}
-                                        <span class="attribute-text-sm"><s>冰箱</s></span>
-                                        {% endif %}
-                                    </div>
-                                    <div class="col-lg-2 col-md-2">
-                                        <span class="icon-2"></span>
-                                        {% if '洗衣机' in sheshi %}
-                                        <span class="attribute-text-sm" style="color: #f1c40f">洗衣机</span>
-                                        {% else %}
-                                        <span class="attribute-text-sm"><s>洗衣机</s></span>
-                                        {% endif %}
-
-                                    </div>
-                                    <div class="col-lg-2 col-md-2">
-                                        <span class="icon-3"></span>
-
-                                        {% if '电视' in sheshi %}
-                                        <span class="attribute-text-sm" style="color: #f1c40f">电视</span>
-                                        {% else %}
-                                        <span class="attribute-text-sm"><s>电视</s></span>
-                                        {% endif %}
-                                    </div>
-                                    <div class="col-lg-2 col-md-2">
-                                        <span class="icon-4"></span>
-
-                                        {% if '空调' in sheshi %}
-                                        <span class="attribute-text-sm" style="color: #f1c40f">空调</span>
-                                        {% else %}
-                                        <span class="attribute-text-sm"><s>空调</s></span>
-                                        {% endif %}
-                                    </div>
-                                    <div class="col-lg-2 col-md-2">
-                                        <span class="icon-5"></span>
-
-                                        {% if '暖气' in sheshi %}
-                                        <span class="attribute-text-sm" style="color: #f1c40f">暖气</span>
-                                        {% else %}
-                                        <span class="attribute-text-sm"><s>暖气</s></span>
-                                        {% endif %}
-
+                                    <div>
+                                        <span class="attribute-text">房东电话：</span>
+                                        <span class="info-text">{{ house.phone_num }}</span>
                                     </div>
                                 </div>
-                                <div class="row attribute-info">
-                                    <div class="col-lg-2 col-md-2">
-                                        <span class="icon-6"></span>
-
-                                        {% if '热水器' in sheshi %}
-                                        <span class="attribute-text-sm" style="color: #f1c40f">热水器</span>
-                                        {% else %}
-                                        <span class="attribute-text-sm"><s>热水器</s></span>
-                                        {% endif %}
+                            </div>
+                            <!--属性2-->
+                            <div class="row attribute-info">
+                                <div class="col-lg-2 col-md-2">
+                                    <span class="attribute-text">房屋卖点</span>
+                                </div>
+                                <div class="col-lg-8 col-md-8">
+                                    <div>
+                                        <span class="attribute-text">交通条件：</span>
+                                        <span class="info-text">{{ house.traffic | dealNone }}</span>
                                     </div>
-                                    <div class="col-lg-2 col-md-2">
-                                        <span class="icon-7"></span>
-
-                                        {% if '天然气' in sheshi %}
-                                        <span class="attribute-text-sm" style="color: #f1c40f">天然气</span>
-                                        {% else %}
-                                        <span class="attribute-text-sm"><s>天然气</s></span>
-                                        {% endif %}
-                                    </div>
-                                    <div class="col-lg-2 col-md-2">
-                                        <span class="icon-8"></span>
-
-                                        {% if '床' in sheshi %}
-                                        <span class="attribute-text-sm" style="color: #f1c40f">床</span>
-                                        {% else %}
-                                        <span class="attribute-text-sm"><s>床</s></span>
-                                        {% endif %}
-                                    </div>
-                                    <div class="col-lg-2 col-md-2">
-                                        <span class="icon-9"></span>
-
-                                        {% if '宽带' in sheshi %}
-                                        <span class="attribute-text-sm" style="color: #f1c40f">WIFI</span>
-                                        {% else %}
-                                        <span class="attribute-text-sm"><s>WIFI</s></span>
-                                        {% endif %}
-                                    </div>
-                                    <div class="col-lg-2 col-md-2">
-                                        <span class="icon-10"></span>
-
-                                        {% if '电梯' in sheshi %}
-                                        <span class="attribute-text-sm" style="color: #f1c40f">电梯</span>
-                                        {% else %}
-                                        <span class="attribute-text-sm"><s>电梯</s></span>
-                                        {% endif %}
+                                    <div>
+                                        <span class="attribute-text">优势条件：</span>
+                                        <span class="info-text">{{ house.title }}</span>
                                     </div>
                                 </div>
 
-                                <!--推荐标题-->
-<!--                                推荐房源-->
-                                <div class="attribute-header">
-                                    <h4>推荐房源</h4>
-                                    <div class="attribute-header-tip-line">
-                                        <span>根据您的浏览习惯，推荐优质房源</span>
-                                    </div>
+                            </div>
+
+                            <!--房源配套设施-->
+                            <div class="attribute-header">
+                                <h4>房源配套设施</h4>
+                            </div>
+                            <!--设施列表-->
+                            <div class="row attribute-info">
+                                <div class="col-lg-2 col-md-2">
+                                    <span class="icon-1"></span>
+
+                                    {% if '冰箱' in sheshi %}
+                                    <span class="attribute-text-sm" style="color: #f1c40f">冰箱</span>
+                                    {% else %}
+                                    <span class="attribute-text-sm"><s>冰箱</s></span>
+                                    {% endif %}
                                 </div>
-                                推荐
-                                <div class="row">
-                                    <div class="col-md-11 col-lg-11">
-                                        <div class="row">
-                                            {% for house in tuijian %}
-                                            <div class="col-lg-4 col-md-4">
-                                                <div class="recommend">
-                                                    <div><a href="/house/{{ house.id }}"><img class='img-fluid img-box'
-                                                                                              src="/static/img/house-bg1.jpg"
-                                                                                              alt=""></a>
-                                                    </div>
-                                                    <div class="recommend-info">
-                                                        <span class="glyphicon glyphicon-map-marker"></span>
-                                                        <span>{{ house.address }}</span>
-                                                    </div>
-                                                    <div class="recommend-info1">
-                                                        <span>{{ house.rooms }}-{{ house.area }}平米</span>
-                                                        <span class="price float-right" style="color: #e74c3c">￥&nbsp{{ house.price }}</span>
-                                                    </div>
+                                <div class="col-lg-2 col-md-2">
+                                    <span class="icon-2"></span>
+                                    {% if '洗衣机' in sheshi %}
+                                    <span class="attribute-text-sm" style="color: #f1c40f">洗衣机</span>
+                                    {% else %}
+                                    <span class="attribute-text-sm"><s>洗衣机</s></span>
+                                    {% endif %}
+
+                                </div>
+                                <div class="col-lg-2 col-md-2">
+                                    <span class="icon-3"></span>
+
+                                    {% if '电视' in sheshi %}
+                                    <span class="attribute-text-sm" style="color: #f1c40f">电视</span>
+                                    {% else %}
+                                    <span class="attribute-text-sm"><s>电视</s></span>
+                                    {% endif %}
+                                </div>
+                                <div class="col-lg-2 col-md-2">
+                                    <span class="icon-4"></span>
+
+                                    {% if '空调' in sheshi %}
+                                    <span class="attribute-text-sm" style="color: #f1c40f">空调</span>
+                                    {% else %}
+                                    <span class="attribute-text-sm"><s>空调</s></span>
+                                    {% endif %}
+                                </div>
+                                <div class="col-lg-2 col-md-2">
+                                    <span class="icon-5"></span>
+
+                                    {% if '暖气' in sheshi %}
+                                    <span class="attribute-text-sm" style="color: #f1c40f">暖气</span>
+                                    {% else %}
+                                    <span class="attribute-text-sm"><s>暖气</s></span>
+                                    {% endif %}
+
+                                </div>
+                            </div>
+                            <div class="row attribute-info">
+                                <div class="col-lg-2 col-md-2">
+                                    <span class="icon-6"></span>
+
+                                    {% if '热水器' in sheshi %}
+                                    <span class="attribute-text-sm" style="color: #f1c40f">热水器</span>
+                                    {% else %}
+                                    <span class="attribute-text-sm"><s>热水器</s></span>
+                                    {% endif %}
+                                </div>
+                                <div class="col-lg-2 col-md-2">
+                                    <span class="icon-7"></span>
+
+                                    {% if '天然气' in sheshi %}
+                                    <span class="attribute-text-sm" style="color: #f1c40f">天然气</span>
+                                    {% else %}
+                                    <span class="attribute-text-sm"><s>天然气</s></span>
+                                    {% endif %}
+                                </div>
+                                <div class="col-lg-2 col-md-2">
+                                    <span class="icon-8"></span>
+
+                                    {% if '床' in sheshi %}
+                                    <span class="attribute-text-sm" style="color: #f1c40f">床</span>
+                                    {% else %}
+                                    <span class="attribute-text-sm"><s>床</s></span>
+                                    {% endif %}
+                                </div>
+                                <div class="col-lg-2 col-md-2">
+                                    <span class="icon-9"></span>
+
+                                    {% if '宽带' in sheshi %}
+                                    <span class="attribute-text-sm" style="color: #f1c40f">WIFI</span>
+                                    {% else %}
+                                    <span class="attribute-text-sm"><s>WIFI</s></span>
+                                    {% endif %}
+                                </div>
+                                <div class="col-lg-2 col-md-2">
+                                    <span class="icon-10"></span>
+
+                                    {% if '电梯' in sheshi %}
+                                    <span class="attribute-text-sm" style="color: #f1c40f">电梯</span>
+                                    {% else %}
+                                    <span class="attribute-text-sm"><s>电梯</s></span>
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <!--推荐标题-->
+                            <div class="attribute-header">
+                                <h4>推荐房源</h4>
+                                <div class="attribute-header-tip-line">
+                                    <span>根据您的浏览习惯，推荐优质房源</span>
+                                </div>
+                            </div>
+                            <!--推荐-->
+                            <div class="row">
+                                <div class="col-md-11 col-lg-11">
+                                    <div class="row">
+                                        {% for house in tuijian %}
+                                        <div class="col-lg-4 col-md-4">
+                                            <div class="recommend">
+                                                <div><a href="/house/{{ house.id }}"><img class='img-fluid img-box'
+                                                                                          src="/static/img/house-bg1.jpg"
+                                                                                          alt=""></a>
+                                                </div>
+                                                <div class="recommend-info">
+                                                    <span class="glyphicon glyphicon-map-marker"></span>
+                                                    <span>{{ house.address }}</span>
+                                                </div>
+                                                <div class="recommend-info1">
+                                                    <span>{{ house.rooms }}-{{ house.area }}平米</span>
+                                                    <span class="price float-right" style="color: #e74c3c">￥&nbsp{{ house.price }}</span>
                                                 </div>
                                             </div>
-                                            {% endfor %}
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--右边栏-->
-                        <div class="col-lg-4 col-md-4">
-                            <div class="row">
-    <!--价格走势-->
-                                <!--line-->
-                                <div class="col-lg-12 col-md-12 mx-auto attribute-header">
-                                    <h4><i class="fa fa-align-right" aria-hidden="true"></i>&nbsp&nbsp{{ house.block }}
-                                        价格走势</h4>
-                                    <div class="attribute-header-tip-line">
-                                        <span>人工智能算法，为您预测房价走势</span>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 col-md-12 mx-auto browse-record-first-div self-no-padding">
-                                    <div id="f_line" class="echarts-tu">
-                                    </div>
-                                </div>
-
-                                <!--pie-->
-<!--                                户型占比-->
-                                <div class="col-lg-12 col-md-12 mx-auto attribute-header">
-                                    <h4><i class="fa fa-align-right" aria-hidden="true"></i>&nbsp&nbsp{{ house.block }}
-                                        户型占比</h4>
-                                    <div class="attribute-header-tip-line">
-                                        <span>根据户型占比，了解户型稀缺度</span>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 col-md-12 mx-auto browse-record-first-div self-no-padding">
-                                    <div id="pie">
-                                    </div>
-                                </div>
-
-                                <!--pie2-->
-    <!--                            房源数量-->
-                                <div class="col-lg-12 col-md-12 mx-auto attribute-header">
-                                    <h4><i class="fa fa-align-right" aria-hidden="true"></i>&nbsp&nbsp{{ house.block }}
-                                        小区房源数量TOP20</h4>
-                                    <div class="attribute-header-tip-line">
-                                        <span>关注房源数量，了解房源热点</span>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 col-md-12 mx-auto browse-record-first-div self-no-padding">
-                                    <div id="scolumn_line">
-                                    </div>
-                                </div>
-
-                                <!--line2-->
-<!--                                户型价格走势-->
-                                <div class="col-lg-12 col-md-12 mx-auto attribute-header">
-                                    <h4><i class="fa fa-align-right" aria-hidden="true"></i>&nbsp&nbsp{{ house.block }}
-                                        户型价格走势</h4>
-                                    <div class="attribute-header-tip-line">
-                                        <span>关注房源单价，了解各小区房价</span>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 col-md-12 mx-auto browse-record-first-div self-no-padding">
-                                    <div id="broken_line">
+                                        {% endfor %}
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                    <!--右边栏-->
+                    <div class="col-lg-4 col-md-4">
+                        <div class="row">
 
-            <!--注册登录-->
-            <div class="row info-line">
-                <div class="col-lg-8 col-md-10 mx-auto">
-                    <!-- 注册窗口 -->
-                    <div id="register" class="modal fade login_form" tabindex="-1">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-body m-header">
-                                    <button class="close" data-dismiss="modal">
-                                        <span>&times;</span>
-                                    </button>
+                            <!--line-->
+                            <div class="col-lg-12 col-md-12 mx-auto attribute-header">
+<!--                                <h4><i class="fa fa-align-right" aria-hidden="true"></i>&nbsp&nbsp{{ house.block }}-->
+<!--                                    价格走势</h4>-->
+<!--                                <div class="attribute-header-tip-line">-->
+<!--                                    <span>人工智能算法，为您预测房价走势</span>-->
+<!--                                </div>-->
+                            </div>
+                            <div class="col-lg-12 col-md-12 mx-auto browse-record-first-div self-no-padding">
+                                <div id="f_line" class="echarts-tu">
                                 </div>
-                                <div class="modal-title">
-                                    <h1 class="text-center">注册</h1>
+                            </div>
+
+                            <!--pie-->
+                            <div class="col-lg-12 col-md-12 mx-auto attribute-header">
+                                <h4><i class="fa fa-align-right" aria-hidden="true"></i>&nbsp&nbsp{{ house.block }}
+                                    户型占比</h4>
+                                <div class="attribute-header-tip-line">
+                                    <span>根据户型占比，了解户型稀缺度</span>
                                 </div>
-                                <div class="modal-body">
-                                    <form class="form-group" id="registeform" action="/register" method="post">
-                                        <div class="form-group">
-                                            <label for="" class="form-info">用户名</label>
-                                            <input class="form-control" name="username" type="text"
-                                                   placeholder="6-15位字母或数字">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="" class="form-info">密码</label>
-                                            <input class="form-control" name="password" type="password"
-                                                   placeholder="至少6位字母或数字">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="" class="form-info">再次输入密码</label>
-                                            <input class="form-control" name="confirmPassword" type="password"
-                                                   placeholder="至少6位字母或数字">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="" class="form-info">邮箱</label>
-                                            <input class="form-control" name="email" type="email"
-                                                   placeholder="例如:123@123.com">
-                                        </div>
-                                        <div class="text-right">
-                                            <button class="btn btn-primary" id='registe-btn'>提交</button>
-                                            <button class="btn btn-danger" data-dismiss="modal">取消</button>
-                                        </div>
-                                        <a href="" data-toggle="modal" data-dismiss="modal" data-target="#login"
-                                           class="switch-info">已有账号？点我登录</a>
-                                    </form>
+                            </div>
+                            <div class="col-lg-12 col-md-12 mx-auto browse-record-first-div self-no-padding">
+                                <div id="pie">
+                                </div>
+                            </div>
+
+                            <!--pie2-->
+                            <div class="col-lg-12 col-md-12 mx-auto attribute-header">
+                                <h4><i class="fa fa-align-right" aria-hidden="true"></i>&nbsp&nbsp{{ house.block }}
+                                    小区房源数量TOP20</h4>
+                                <div class="attribute-header-tip-line">
+                                    <span>关注房源数量，了解房源热点</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 mx-auto browse-record-first-div self-no-padding">
+                                <div id="scolumn_line">
+                                </div>
+                            </div>
+
+                            <!--line2-->
+                            <div class="col-lg-12 col-md-12 mx-auto attribute-header">
+                                <h4><i class="fa fa-align-right" aria-hidden="true"></i>&nbsp&nbsp{{ house.block }}
+                                    户型价格走势</h4>
+                                <div class="attribute-header-tip-line">
+                                    <span>关注房源单价，了解各小区房价</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 mx-auto browse-record-first-div self-no-padding">
+                                <div id="broken_line">
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- 登录窗口 -->
-                    <div id="login" class="modal fade login_form">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-body m-header">
-                                    <button class="close" data-dismiss="modal">
-                                        <span>&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-title">
-                                    <h1 class="text-center">登录</h1>
-                                </div>
-                                <div class="modal-body">
-                                    <form class="form-group" id="loginform" action="/login" method="post">
-                                        <div class="form-group">
-                                            <label for="" class="form-info">用户名</label>
-                                            <input class="form-control" name="username" type="text" placeholder="">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="" class="form-info">密码</label>
-                                            <input class="form-control" name="password" type="password" placeholder="">
-                                        </div>
-                                        <div class="text-right">
-                                            <button class="btn btn-primary" id='login-btn'>登录</button>
-                                            <button class="btn btn-danger" data-dismiss="modal">取消</button>
-                                        </div>
-                                        <a href="" data-toggle="modal" data-dismiss="modal"
-                                           data-target="#register" class="switch-info">还没有账号？点我注册</a>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </header>
-
-    <hr>
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-md-10 mx-auto">
-                    <p class="copyright text-muted">Copyright &copy; 基于Web的房屋租赁管理系统 2022</p>
                 </div>
             </div>
         </div>
-    </footer>
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="/static/vendor/jquery/jquery.min.js"></script>
-    <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.bootcss.com/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>
-    <script src="/static/js/login.js"></script>
+        <!--注册登录-->
+        <div class="row info-line">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <!-- 注册窗口 -->
+                <div id="register" class="modal fade login_form" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-body m-header">
+                                <button class="close" data-dismiss="modal">
+                                    <span>&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-title">
+                                <h1 class="text-center">注册</h1>
+                            </div>
+                            <div class="modal-body">
+                                <form class="form-group" id="registeform" action="/register" method="post">
+                                    <div class="form-group">
+                                        <label for="" class="form-info">用户名</label>
+                                        <input class="form-control" name="username" type="text"
+                                               placeholder="6-15位字母或数字">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="form-info">密码</label>
+                                        <input class="form-control" name="password" type="password"
+                                               placeholder="至少6位字母或数字">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="form-info">再次输入密码</label>
+                                        <input class="form-control" name="confirmPassword" type="password"
+                                               placeholder="至少6位字母或数字">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="form-info">邮箱</label>
+                                        <input class="form-control" name="email" type="email"
+                                               placeholder="例如:123@123.com">
+                                    </div>
+                                    <div class="text-right">
+                                        <button class="btn btn-primary" id='registe-btn'>提交</button>
+                                        <button class="btn btn-danger" data-dismiss="modal">取消</button>
+                                    </div>
+                                    <a href="" data-toggle="modal" data-dismiss="modal" data-target="#login"
+                                       class="switch-info">已有账号？点我登录</a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 登录窗口 -->
+                <div id="login" class="modal fade login_form">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-body m-header">
+                                <button class="close" data-dismiss="modal">
+                                    <span>&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-title">
+                                <h1 class="text-center">登录</h1>
+                            </div>
+                            <div class="modal-body">
+                                <form class="form-group" id="loginform" action="/login" method="post">
+                                    <div class="form-group">
+                                        <label for="" class="form-info">用户名</label>
+                                        <input class="form-control" name="username" type="text" placeholder="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="form-info">密码</label>
+                                        <input class="form-control" name="password" type="password" placeholder="">
+                                    </div>
+                                    <div class="text-right">
+                                        <button class="btn btn-primary" id='login-btn'>登录</button>
+                                        <button class="btn btn-danger" data-dismiss="modal">取消</button>
+                                    </div>
+                                    <a href="" data-toggle="modal" data-dismiss="modal"
+                                       data-target="#register" class="switch-info">还没有账号？点我注册</a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</header>
+
+<hr>
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <p class="copyright text-muted">Copyright &copy; 基于Web的房屋租赁管理系统 2022</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Bootstrap core JavaScript -->
+<script src="/static/vendor/jquery/jquery.min.js"></script>
+<script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>
+<script src="/static/js/login.js"></script>
 
 
-    <!-- Custom scripts for this template -->
-    <script src="/static/js/clean-blog.min.js"></script>
+<!-- Custom scripts for this template -->
+<script src="/static/js/clean-blog.min.js"></script>
 
-    <!-- side data -->
-    <script type="text/javascript" src="/static/vendor/echarts-stat/ecStat.min.js"></script>
-    <script src="/static/js/echarts.min.js"></script>
-    <script src="/static/js/infographic.js"></script>
-    <script src="/static/js/show_data_pie.js"></script>
-    <script src="/static/js/f_data.js"></script>
-    <script src="/static/js/show_column_data.js"></script>
-    <script src="/static/js/show_broken_line_data.js"></script>
+<!-- side data -->
+<script type="text/javascript" src="/static/vendor/echarts-stat/ecStat.min.js"></script>
+<script src="/static/js/echarts.min.js"></script>
+<script src="/static/js/infographic.js"></script>
+<script src="/static/js/show_data_pie.js"></script>
+<script src="/static/js/f_data.js"></script>
+<script src="/static/js/show_column_data.js"></script>
+<script src="/static/js/show_broken_line_data.js"></script>
 
 
-    <script>
-        $('document').ready(function () {
-            // 获取scatter
+<script>
+    $('document').ready(function () {
+        // 获取scatter
+        $.ajax({
+            url: "/get/scatterdata/{{ house.block }}",
+            type: 'get',
+            dataType: 'json',
+            success: function (data) {
+                getdata1(data['data']);
+
+            }
+        });
+        // 获取p  ie
+        $.ajax({
+            url: "/get/piedata/{{ house.block }}",
+            type: 'get',
+            dataType: 'json',
+            success: function (data) {
+                pie_chart(data['data'])
+            }
+        });
+        // 获取column
+        $.ajax({
+            url: "/get/columndata/{{ house.block }}",
+            type: 'get',
+            dataType: 'json',
+            success: function (data) {
+                column_chart(data['data'])
+            }
+        });
+
+// 获取broken_line
+$.ajax({
+    url: "/get/brokenlinedata/{{ house.block }}",
+    type: 'get',
+    dataType: 'json',
+    success: function (data) {
+        broken_line_chart(data['data'])
+    }
+});
+        // 点击收藏
+        $("#btn-collection").on("click", function () {
             $.ajax({
-                url: "/get/scatterdata/{{ house.block }}",
+                url: "/add/collection/{{ house.id }}",
                 type: 'get',
                 dataType: 'json',
                 success: function (data) {
-                    getdata1(data['data']);
-
-                }
-            });
-            // 获取p  ie
-            $.ajax({
-                url: "/get/piedata/{{ house.block }}",
-                type: 'get',
-                dataType: 'json',
-                success: function (data) {
-                    pie_chart(data['data'])
-                }
-            });
-            // 获取column
-            $.ajax({
-                url: "/get/columndata/{{ house.block }}",
-                type: 'get',
-                dataType: 'json',
-                success: function (data) {
-                    column_chart(data['data'])
-                }
-            });
-
-    // 获取broken_line
-    $.ajax({
-        url: "/get/brokenlinedata/{{ house.block }}",
-        type: 'get',
-        dataType: 'json',
-        success: function (data) {
-            broken_line_chart(data['data'])
-        }
-    });
-            // 点击收藏
-            $("#btn-collection").on("click", function () {
-                $.ajax({
-                    url: "/add/collection/{{ house.id }}",
-                    type: 'get',
-                    dataType: 'json',
-                    success: function (data) {
-                        if (data['valid'] == '0') {
-                            alert(data['msg'])
-                        } else {
-                            alert(data['msg'])
-                        }
+                    if (data['valid'] == '0') {
+                        alert(data['msg'])
+                    } else {
+                        alert(data['msg'])
                     }
-                });
-            })
+                }
+            });
         })
-    </script>
+    })
+</script>
 
 </body>
 
